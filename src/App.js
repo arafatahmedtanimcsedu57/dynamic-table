@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import {DynamicTable} from "./dynamic-table";
+
 
 function App() {
+  const [rowData] = useState([
+    {
+      make: "Toyota", 
+      model: "Celica", 
+      price: 35000
+    },
+    {
+      make: "Ford", 
+      model: "Mondeo", 
+      price: 32000
+    },
+    {
+      make: "Porsche", 
+      model: "Boxster", 
+      price: 72000
+    }
+  ]);
+
+  const [columnDefs] = useState([
+    { 
+      field: 'make',
+      label: "Make" 
+    },
+    { 
+      field: 'model',
+      label: "Model"
+    },
+    { 
+      field: 'price',
+      label: "Price" 
+    }
+  ])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <DynamicTable 
+        columnDefs = {columnDefs}
+        rowData={rowData}
+      />
     </div>
   );
 }
